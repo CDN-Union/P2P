@@ -29,6 +29,7 @@ P2P方案流程要比CDN流程复杂很多，整体架构如下所示：
 * 输出格式统一且标准，兼容各家播放器
 * 需要对rtmp或者http-flv直播流进行切片，对于HLS和Dash的天生切片形式的不用切片
 * sdk必须自己实现统计用户使用了多少CDN，使用了多少P2P，然后上报给服务层统计P2P比率
+* sdk必须提供精简的接口，或与播放器相同的接口，以方便快速地对接
 
 ### 3.SDK接口标准
 
@@ -38,17 +39,7 @@ P2P方案流程要比CDN流程复杂很多，整体架构如下所示：
 
 FLASH的SDK为swf，该swf可在网络上自由获取。SDK扩展自Adobe actionscript3的NetStream，支持符合NetSream全部原生方法。
 
-启动时，加载直播SDK（livesdk）或者点播SDK（vodsdk）。
-
-```actionscript3
-var loader:Loader = new Loader();
-loader.contentLoaderInfo.addEventListener(Event.COMPLETE, loadSuccess);
-loader.load(new URLRequest("http://split.vbyte.cn/sdk/livesdk.swf")); (或者 vodsdk.swf)
-var p2pNetStream:Netream = liveP2PIntance.stream;
-p2pNetStream.addEventListener(NetStatusEvent.NET_STATUS, onPlayStatus);
-video.attachNetStream(p2pNetStream);
-p2pNetStream.play(channelID);(或者URL)
-```
+详细请见[Flash文档](https://docs.qvb.qcloud.com/clients-sdk/flash/)
 
 ##### 	3.2 ANDROID和IOS平台
 
@@ -57,11 +48,3 @@ p2pNetStream.play(channelID);(或者URL)
 ##### 	3.3 HTML5平台
 
 详细请见[H5文档](https://docs.qvb.qcloud.com/clients-sdk/h5-hls/)
-
-
-
-
-
-
-
-
