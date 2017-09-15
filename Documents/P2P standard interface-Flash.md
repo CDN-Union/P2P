@@ -17,7 +17,7 @@ Flash SDK采取远程加载的方式调用，加载成功后即可获取P2PNetSt
     loader.contentLoaderInfo.addEventListener(Event.COMPLETE, function(e:Event):void {
         var P2PNetStream:NetStream = e.currentTarget.content.stream;
     });
-    loader.load(new URLRequest(sdkUrl);
+    loader.load(new URLRequest(sdkUrl));
 ```
 - sdkUrl [String] - SDK远程加载url
 
